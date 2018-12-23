@@ -17,6 +17,7 @@
 
 package com.dangdang.ddframe.job.example;
 
+import com.alibaba.druid.pool.DruidDataSource;
 import com.dangdang.ddframe.job.config.JobCoreConfiguration;
 import com.dangdang.ddframe.job.config.dataflow.DataflowJobConfiguration;
 import com.dangdang.ddframe.job.config.script.ScriptJobConfiguration;
@@ -66,8 +67,8 @@ public final class JavaMain {
         CoordinatorRegistryCenter regCenter = setUpRegistryCenter();
         JobEventConfiguration jobEventConfig = new JobEventRdbConfiguration(setUpEventTraceDataSource());
         setUpSimpleJob(regCenter, jobEventConfig);
-        setUpDataflowJob(regCenter, jobEventConfig);
-        setUpScriptJob(regCenter, jobEventConfig);
+        //setUpDataflowJob(regCenter, jobEventConfig);
+        //setUpScriptJob(regCenter, jobEventConfig);
     }
     
     private static CoordinatorRegistryCenter setUpRegistryCenter() {
@@ -78,7 +79,8 @@ public final class JavaMain {
     }
     
     private static DataSource setUpEventTraceDataSource() {
-        BasicDataSource result = new BasicDataSource();
+        //BasicDataSource result = new BasicDataSource();
+        DruidDataSource result = new DruidDataSource();
         result.setDriverClassName(EVENT_RDB_STORAGE_DRIVER);
         result.setUrl(EVENT_RDB_STORAGE_URL);
         result.setUsername(EVENT_RDB_STORAGE_USERNAME);
